@@ -16,6 +16,6 @@ Antes de operar, **lee y sigue**:
 - Cada página (excepto `index.md` y `log.md`) lleva frontmatter `type:`
   (`summary` | `entity` | `concept` | `comparison` | `synthesis` | `archive`).
 - Cada entrada de log: `## [YYYY-MM-DD] <op> | <título>`.
-- Enlaces relativos dentro de `wiki/`; los nombres de archivo siguen
+- Enlaces relativos dentro de `01_WIKI/`; los nombres de archivo siguen
   `summary-*`, `entity-*`, `concept-*`, `comparison-*`, `synthesis-*`, `archive-*`.
-- Sé económico en tokens: no cargues toda la Wiki; usa los índices para localizar páginas.
+- Sé económico en tokens: no cargues toda la Wiki; usa el índice para localizar páginas.

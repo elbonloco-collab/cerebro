@@ -40,7 +40,6 @@ Se dispara solo en el **primer INGEST** de un dominio. Crear únicamente lo que 
 - `<dominio>/raw/` (+ `.gitkeep`)
 - `<dominio>/index.md` — título `# <Dominio> — Base de Conocimiento`, cuerpo vacío
 - `<dominio>/log.md` — título `# <Dominio> — Wiki Log`, cuerpo vacío
-- `wiki/index.md` — título `# Índice de la Base de Conocimiento — CEREBRO`, si no existe
 
 Si QUERY o LINT no encuentran el dominio: pedir un ingest primero para inicializarlo.
 
@@ -85,8 +84,7 @@ cascadan. Efectos cross-dominio: mencionarlos al usuario, no aplicarlos solos.
 
 ### Post-Ingest
 1. Actualizar `<dominio>/index.md` (añadir/actualizar filas de las páginas tocadas).
-2. Actualizar `wiki/index.md` (solo las filas tocadas; añadir sección de dominio si es la primera).
-3. Añadir al `<dominio>/log.md`:
+2. Añadir al `<dominio>/log.md`:
    ```
    ## [YYYY-MM-DD] ingest | <primary page title>
    - Updated: <cascade-updated page title>
@@ -105,7 +103,7 @@ cascadan. Efectos cross-dominio: mencionarlos al usuario, no aplicarlos solos.
 **Formatos de salida:** prosa con citas (lookup/summary); tabla markdown (comparar); prosa Claim+Evidence (argumento); lista numerada (timeline); Marp (slides); tabla/código (datos).
 
 **Archivado:** elegir plantilla por forma (comparison/synthesis/archive), escribir en el topic más
-relevante, actualizar ambos índices y añadir al log:
+relevante, actualizar `index.md` y el log:
 ```
 ## [YYYY-MM-DD] query | Archived: <page title>
 ```
@@ -113,7 +111,7 @@ relevante, actualizar ambos índices y añadir al log:
 ## 8. Operación LINT
 
 ### Deterministas (auto-fix)
-- **Consistencia del índice:** archivo sin entrada -> añadir con `(no summary)`; entrada sin archivo -> marcar `[MISSING]`; página bajo subheading equivocado -> mover; subheading vacío -> eliminar; sincronizar el índice global.
+- **Consistencia del índice:** archivo sin entrada -> añadir con `(no summary)`; entrada sin archivo -> marcar `[MISSING]`; página bajo subheading equivocado -> mover; subheading vacío -> eliminar.
 - **Enlaces internos:** destino inexistente -> buscar por nombre (1 match -> corregir; 0 o >1 -> reportar).
 - **Referencias a raw:** cada enlace del campo `Raw:` debe apuntar a un archivo real de `raw/`.
 - **See Also:** añadir cross-references obvias; quitar enlaces a archivos borrados.
@@ -150,7 +148,7 @@ Parseable con `grep "^## \[" log.md | tail -5`. Nunca se edita el pasado.
 - Markdown estándar con **enlaces relativos** dentro de la Wiki. Solo un nivel de `topic/`, sin anidar más.
 - Fechas: `log`/`Collected`/`Archived` = hoy; `Updated` = cuándo cambió el contenido; `Published` = de la fuente (`Unknown` si no hay).
 - Cada página (excepto `index.md`/`log.md`) lleva `type:`.
-- INGEST actualiza el índice del dominio, el índice global y el log del dominio. ARCHIVE actualiza ambos índices y el log. LINT actualiza el log (e índices solo si auto-fix). **QUERY plano no escribe archivos.**
+- INGEST actualiza `index.md` y el `log.md` del dominio. ARCHIVE actualiza `index.md` y el log. LINT actualiza el log (e `index.md` solo si auto-fix). **QUERY plano no escribe archivos.**
 - Nombres de archivo: `summary-*`, `entity-*`, `concept-*`, `comparison-*`, `synthesis-*`, `archive-*`.
 
 ## 13. Convención bilingüe (CEREBRO)

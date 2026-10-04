@@ -22,8 +22,6 @@ Operaciones: **INGEST · QUERY · LINT** (+ **ACT**, nuestra extensión operativ
 
 ```text
 CEREBRO/
-├── wiki/
-│   └── index.md            ← índice GLOBAL (cross-dominio)
 ├── 01_WIKI/                ← DOMINIO de conocimiento
 │   ├── raw/                ← fuentes inmutables (capa 1)
 │   ├── index.md            ← índice del dominio
@@ -34,7 +32,7 @@ CEREBRO/
 │   ├── herramientas/       ← entities (tools)
 │   └── referencias/
 ├── _SISTEMA/               ← capa SCHEMA (contrato del sistema)
-│   ├── README.md  SCHEMA.md  REGLAS.md  ESTADO.md  INDICE.md
+│   ├── README.md  SCHEMA.md  REGLAS.md  ESTADO.md
 │   └── plantillas/         ← plantillas exactas de cada tipo de página
 ├── _AUTOMATIZACIONES/      ← scripts / telegram / tools  (fase 2)
 ├── 00_INBOX/               ← entrada sin clasificar
@@ -45,4 +43,4 @@ CEREBRO/
 
 1. Abrir esta carpeta como *vault* en Obsidian.
 2. El contrato del sistema está en `_SISTEMA/SCHEMA.md`.
-3. El índice global es `wiki/index.md`; el índice y el log del dominio, en `01_WIKI/`.
+3. El índice es `01_WIKI/index.md`; el log, `01_WIKI/log.md`.

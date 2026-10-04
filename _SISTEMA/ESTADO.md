@@ -8,10 +8,9 @@
 - [x] Repositorio Git inicializado (`main`).
 - [x] Estructura física de carpetas creada.
 - [x] Capa **raw**: `01_WIKI/raw/llm-wiki/2026-04-04-llm-wiki-karpathy-gist.md`.
-- [x] Índice **global**: `wiki/index.md`.
-- [x] Índice de dominio: `01_WIKI/index.md`.
+- [x] Índice (único): `01_WIKI/index.md`.
 - [x] **Log** de dominio: `01_WIKI/log.md` (append-only) ⭐.
-- [x] Capa **schema**: `_SISTEMA/SCHEMA.md`, `REGLAS.md`, `ESTADO.md`, `INDICE.md`, `README.md`.
+- [x] Capa **schema**: `_SISTEMA/SCHEMA.md`, `REGLAS.md`, `ESTADO.md`, `README.md`.
 - [x] **Plantillas**: `_SISTEMA/plantillas/` (raw, summary, entity, concept, comparison, synthesis, archive, index).
 - [x] `AGENTS.md` en la raíz.
 - [x] Primer **INGEST**: gist de Karpathy → summary + entity + 2x concept + 1x synthesis.
