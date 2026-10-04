@@ -36,7 +36,8 @@ CEREBRO/
 │   └── plantillas/         ← plantillas exactas de cada tipo de página
 ├── _AUTOMATIZACIONES/      ← scripts / telegram / tools  (fase 2)
 ├── 00_INBOX/               ← entrada sin clasificar
-└── 02_OPERACIONES/ … 06_ARCHIVOS/  ← capa operativa de CEREBRO (fase 2)
+├── 02_OPERACIONES/           ← capa operativa: index.md · log.md · proyectos/ tareas/ decisiones/ reglas/ workflows/ estados/ compras/
+└── 03_PROYECTOS/ … 06_ARCHIVOS/  ← (fase 2)
 ```
 
 ## Empezar
@@ -44,3 +45,4 @@ CEREBRO/
 1. Abrir esta carpeta como *vault* en Obsidian.
 2. El contrato del sistema está en `_SISTEMA/SCHEMA.md`.
 3. El índice es `01_WIKI/index.md`; el log, `01_WIKI/log.md`.
+4. La capa operativa (qué hacemos) vive en `02_OPERACIONES/`.

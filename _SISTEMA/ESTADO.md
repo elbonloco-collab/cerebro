@@ -15,9 +15,16 @@
 - [x] `AGENTS.md` en la raíz.
 - [x] Primer **INGEST**: gist de Karpathy → summary + entity + 2x concept + 1x synthesis.
 
-## Pendiente (Fase 2 — capa operativa de CEREBRO)
+## Hecho (Fase 2 — capa operativa)
 
-- [ ] Poblar `02_OPERACIONES/` (tareas, decisiones, workflows, reglas, proyectos, compras, estados).
+- [x] `02_OPERACIONES/` activada: `index.md` + `log.md`.
+- [x] Tipos operativos: proyectos, tareas, decisiones, reglas, workflows, estados, compras.
+- [x] **EVENT / CONTEXT / ACTION** registrados como entradas (sin carpeta) en `index.md`/`log.md`.
+- [x] `_SISTEMA/SCHEMA.md` ampliado (§15-§19) + plantillas en `_SISTEMA/plantillas/operaciones/`.
+- [x] Markdown de prueba (Paso 4): proyecto de Eva, decisión/regla/workflow de música, tarea, estado café y compras.
+
+## Pendiente (Fase 3 — integraciones y resto)
+
 - [ ] Definir `03_PROYECTOS/`, `04_CLIENTES/`, `05_RECURSOS/`, `06_ARCHIVOS/`.
 - [ ] Configurar Obsidian (vault = esta carpeta).
 - [ ] Conectar Telegram ↔ Donna.

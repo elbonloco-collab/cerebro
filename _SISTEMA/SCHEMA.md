@@ -14,6 +14,8 @@ interfaz visual; **Donna** (IA vía Telegram) y la IA de terminal (**Cline**) co
 Wiki; **Python** ejecuta las automatizaciones. El LLM escribe y mantiene la Wiki; el humano cura
 fuentes, dirige el análisis y pregunta.
 
+CEREBRO tiene dos capas: **`01_WIKI`** (qué sabemos) y **`02_OPERACIONES`** (qué hacemos con ello).
+
 ## 2. Las tres capas
 
 | Capa | Dónde vive | Regla |
@@ -22,7 +24,9 @@ fuentes, dirige el análisis y pregunta.
 | **Wiki** | `<dominio>/<topic>/` | El LLM la posee por completo: crea, actualiza, cross-referencia. |
 | **Schema** | `_SISTEMA/SCHEMA.md` (este archivo) | Define estructura, tipos y workflows. |
 
-Plantillas exactas de cada tipo de página: `_SISTEMA/plantillas/`.
+Plantillas exactas de cada tipo de página: `_SISTEMA/plantillas/` (Wiki) y `_SISTEMA/plantillas/operaciones/` (Operaciones).
+
+> CEREBRO añade, sobre estas tres capas de conocimiento, una **capa operativa** (`02_OPERACIONES/`) — ver §15.
 
 ## 3. Dominios
 
@@ -151,13 +155,84 @@ Parseable con `grep "^## \[" log.md | tail -5`. Nunca se edita el pasado.
 - INGEST actualiza `index.md` y el `log.md` del dominio. ARCHIVE actualiza `index.md` y el log. LINT actualiza el log (e `index.md` solo si auto-fix). **QUERY plano no escribe archivos.**
 - Nombres de archivo: `summary-*`, `entity-*`, `concept-*`, `comparison-*`, `synthesis-*`, `archive-*`.
 
-## 13. Convención bilingüe (CEREBRO)
-Se conserva **verbatim** la estructura de Karpathy (frontmatter, headings de plantilla, subheadings del
+## 13. Convención de idioma por capa
+- **Capa Wiki (`01_WIKI`):** se conserva **verbatim** la estructura de Karpathy (frontmatter, headings de plantilla, subheadings del
 índice, nombres de operaciones) **en inglés**, para que las plantillas y el LINT sean deterministas. La
-**prosa** se escribe en **español**.
+**prosa** va en **español**.
+- **Capa Operativa (`02_OPERACIONES`):** es capa propia de CEREBRO, así que headings y subheadings van en **español**; las **claves de frontmatter** y los **valores de `type`** se mantienen en **inglés**.
 
 ## 14. Rutas relativas (mapa CEREBRO)
 Desde una página en `<dominio>/<topic>/`:
 - a su raw -> `../raw/<topic>/<file>.md`
 - a otra página del mismo topic -> `otra-pagina.md`
 - a una página de otro topic -> `../<otro-topic>/otra-pagina.md`
+
+---
+
+## 15. Capa operativa — `02_OPERACIONES`
+
+CEREBRO añade, sobre la capa de conocimiento, una **capa operativa**: qué hacemos con lo que sabemos.
+- `01_WIKI` = qué sabemos.
+- `02_OPERACIONES` = qué hacemos con ello.
+
+```text
+02_OPERACIONES/
+├── index.md
+├── log.md
+├── proyectos/  tareas/  decisiones/  reglas/  workflows/  estados/  compras/
+```
+
+Plantillas: `_SISTEMA/plantillas/operaciones/`.
+
+## 16. Tipos operativos
+
+Cada página operativa (excepto `index.md` y `log.md`) lleva frontmatter `type:`:
+
+| `type` | Carpeta | Qué es |
+|--------|---------|--------|
+| `project` | `proyectos/` | trabajo existente |
+| `task` | `tareas/` | algo que hay que hacer |
+| `decision` | `decisiones/` | decisión tomada |
+| `rule` | `reglas/` | regla |
+| `workflow` | `workflows/` | forma establecida de hacer algo |
+| `state` | `estados/` | situación actual |
+| `purchase` | `compras/` | lista/registro de compra |
+
+**Campos comunes:** `type`, `status`, `created`, `updated`.
+**Campos por tipo:**
+- `project`: `status` (activo/pausado/cerrado), `cliente`.
+- `task`: `status` (pendiente/en progreso/hecha/bloqueada), `due`, `project`.
+- `decision`: `status` (vigente/superada), `date`, `project`.
+- `rule`: `status` (activa/inactiva).
+- `workflow`: `status` (activo/inactivo).
+- `state`: `variable`, `value`.
+- `purchase`: `status` (abierta/comprada).
+
+Los tipos **`event` (EVENT)**, **`context` (CONTEXT)** y **`action` (ACTION)** **no tienen carpeta** (ver §19).
+
+## 17. Operación ACT
+
+`ACT` (extensión de CEREBRO, no de Karpathy) pasa del conocimiento/estado a una **operación real**.
+1. Interpretar la instrucción.
+2. Aplicar el cambio en `02_OPERACIONES/` (crear/actualizar la página del tipo).
+3. Actualizar `02_OPERACIONES/index.md` (y el *Registro rápido* si aplica).
+4. Añadir al `02_OPERACIONES/log.md` con `op` = el tipo (`task`, `state`, …) o `act`.
+
+## 18. Índice y log operativos
+
+- `02_OPERACIONES/index.md` — catálogo por tipo (una sección por tipo) + sección **Registro rápido** para evento/contexto/acción. Se actualiza en cada operación.
+- `02_OPERACIONES/log.md` — append-only. Formato:
+  ```
+  ## [YYYY-MM-DD] <tipo> | <título>
+  ```
+  Parseable: `grep "^## \[" log.md | tail -5`.
+
+## 19. Registros sin carpeta (EVENT · CONTEXT · ACTION)
+
+Decisión de CEREBRO: estos tres tipos **no tienen carpeta**; se registran como **entradas**:
+- En `02_OPERACIONES/index.md` → sección **Registro rápido**: columnas `Fecha | Tipo | Entrada | Enlaces`.
+- En `02_OPERACIONES/log.md` → entrada con `op` = `event` / `context` / `action`.
+
+Definiciones: **EVENT** = algo que ocurrió; **CONTEXT** = situación relevante; **ACTION** = operación que debe ejecutarse.
+
+> Nota: `STATE`, `PROJECT`, `TASK`, `DECISION`, `RULE` y `WORKFLOW` **sí** tienen carpeta y página propia.

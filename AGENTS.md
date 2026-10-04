@@ -8,6 +8,7 @@ Antes de operar, **lee y sigue**:
 - `_SISTEMA/SCHEMA.md` — esquema, tipos de página, convenciones y operaciones INGEST/QUERY/LINT/ACT.
 - `_SISTEMA/plantillas/` — plantillas exactas de cada tipo de página.
 - `_SISTEMA/REGLAS.md` — reglas del sistema.
+- `02_OPERACIONES/` — capa operativa (qué hacemos): `index.md` + `log.md` + tipos.
 
 ## Reglas rápidas
 
@@ -19,3 +20,4 @@ Antes de operar, **lee y sigue**:
 - Enlaces relativos dentro de `01_WIKI/`; los nombres de archivo siguen
   `summary-*`, `entity-*`, `concept-*`, `comparison-*`, `synthesis-*`, `archive-*`.
 - Sé económico en tokens: no cargues toda la Wiki; usa el índice para localizar páginas.
+- En `02_OPERACIONES/` cada página lleva `type:` operativo (`project` | `task` | `decision` | `rule` | `workflow` | `state` | `purchase`); `event`/`context`/`action` se registran como entradas (sin carpeta).
