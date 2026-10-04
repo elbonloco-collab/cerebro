@@ -1,0 +1,19 @@
+# Referencias temporales usadas para construir CEREBRO
+_REF_TMP/
+
+# Sistema operativo
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Obsidian (estado efímero por dispositivo)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
