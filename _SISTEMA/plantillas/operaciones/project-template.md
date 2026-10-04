@@ -18,7 +18,7 @@ updated: {YYYY-MM-DD}
 
 ## Tareas
 
-- [{tarea}](../tareas/{task}.md)
+- [ ] {tarea}
 
 ## Workflows
 

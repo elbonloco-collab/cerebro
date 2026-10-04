@@ -8,8 +8,8 @@
 - [x] Repositorio Git inicializado (`main`).
 - [x] Estructura física de carpetas creada.
 - [x] Capa **raw**: `01_WIKI/raw/llm-wiki/2026-04-04-llm-wiki-karpathy-gist.md`.
-- [x] Índice (único): `01_WIKI/index.md`.
-- [x] **Log** de dominio: `01_WIKI/log.md` (append-only) ⭐.
+- [x] Índice (único): `index.md` (raíz).
+- [x] **Log** (único): `log.md` (raíz, append-only) ⭐.
 - [x] Capa **schema**: `_SISTEMA/SCHEMA.md`, `REGLAS.md`, `ESTADO.md`, `README.md`.
 - [x] **Plantillas**: `_SISTEMA/plantillas/` (raw, summary, entity, concept, comparison, synthesis, archive, index).
 - [x] `AGENTS.md` en la raíz.
@@ -17,11 +17,11 @@
 
 ## Hecho (Fase 2 — capa operativa)
 
-- [x] `02_OPERACIONES/` activada: `index.md` + `log.md`.
-- [x] Tipos operativos: proyectos, tareas, decisiones, reglas, workflows, estados, compras.
-- [x] **EVENT / CONTEXT / ACTION** registrados como entradas (sin carpeta) en `index.md`/`log.md`.
-- [x] `_SISTEMA/SCHEMA.md` ampliado (§15-§19) + plantillas en `_SISTEMA/plantillas/operaciones/`.
-- [x] Markdown de prueba (Paso 4): proyecto de Eva, decisión/regla/workflow de música, tarea, estado café y compras.
+- [x] Índice y log **únicos** en la raíz (`index.md`, `log.md`).
+- [x] Operaciones: notas para project/decision/rule/workflow; tareas/estados/compras en archivos-lista (`tareas.md`, `estados.md`, `compras.md`).
+- [x] **EVENT** vive solo en `log.md`; **ACTION** = tarea; **CONTEXT** absorbido.
+- [x] `_SISTEMA/SCHEMA.md` (§15-§19) + `_SISTEMA/DONNA.md` (contrato corto) + plantillas.
+- [x] Ejemplos (`ejemplo: true`): proyecto Eva, decisión/regla/workflow de música.
 
 ## Pendiente (Fase 3 — integraciones y resto)
 
@@ -35,6 +35,6 @@
 ## Notas
 
 - Dentro del MVP documento (`CEREBRO_MVP_MARKDOWN_OPERATIVO.md`) el ítem "log" ya existía como
-  `01_WIKI/log.md`; aquí queda implementado como archivo **append-only del dominio** según el patrón
+  un `log.md`; aquí queda implementado como **un único `log.md` append-only en la raíz** según el patrón
   de Karpathy, y elevado a elemento de primera importancia.
 - `_REF_TMP/` es temporal (referencias usadas para construir CEREBRO); está en `.gitignore` y puede borrarse.

@@ -1,6 +1,7 @@
 ---
 type: project
 status: activo
+ejemplo: true
 cliente: Eva
 created: 2026-10-04
 updated: 2026-10-04
@@ -18,7 +19,7 @@ Recién creado. Falta definir temas y fechas.
 
 ## Tareas
 
-- [Terminar el template](../tareas/task-terminar-template.md)
+- [ ] Terminar el template
 
 ## Workflows
 

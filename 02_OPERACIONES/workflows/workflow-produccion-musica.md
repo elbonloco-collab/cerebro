@@ -1,6 +1,7 @@
 ---
 type: workflow
 status: activo
+ejemplo: true
 updated: 2026-10-04
 ---
 

@@ -1,6 +1,7 @@
 ---
 type: decision
 status: vigente
+ejemplo: true
 date: 2026-10-04
 updated: 2026-10-04
 project: ../proyectos/project-eva-produccion.md

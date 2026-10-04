@@ -14,3 +14,4 @@
 12. **Python ejecuta, la IA interpreta.** Las automatizaciones son scripts Python propios.
 13. **Aprender de los procesos.** La IA guarda cambios de proceso en el log.
 14. Si un componente nuevo no aporta una mejora clara, **no entra** al sistema.
+15. **Un solo `index.md` y un solo `log.md`**, en la raíz. Por ahora los actualiza **Cline a mano** en cada operación; el **escritor único Python** es una meta futura.

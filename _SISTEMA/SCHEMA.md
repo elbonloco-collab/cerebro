@@ -30,8 +30,8 @@ Plantillas exactas de cada tipo de página: `_SISTEMA/plantillas/` (Wiki) y `_SI
 
 ## 3. Dominios
 
-Un **dominio** es una carpeta de primer nivel con su propio `raw/`, `index.md` y `log.md`.
-En CEREBRO, `01_WIKI` es el dominio de conocimiento inicial.
+CEREBRO se trata como **un único dominio**: hay **un solo** `index.md` y **un solo** `log.md`, y viven en la **raíz**.
+Las carpetas (`01_WIKI/`, `02_OPERACIONES/`) son **regiones físicas**, no dominios con índice/log propio. (Si algún día hay áreas de conocimiento independientes, se podrán separar.)
 
 **Resolución de dominio** (en este orden):
 1. El usuario lo nombra explícitamente.
@@ -42,8 +42,8 @@ En CEREBRO, `01_WIKI` es el dominio de conocimiento inicial.
 
 Se dispara solo en el **primer INGEST** de un dominio. Crear únicamente lo que falte; **nunca sobrescribir**:
 - `<dominio>/raw/` (+ `.gitkeep`)
-- `<dominio>/index.md` — título `# <Dominio> — Base de Conocimiento`, cuerpo vacío
-- `<dominio>/log.md` — título `# <Dominio> — Wiki Log`, cuerpo vacío
+- `index.md` (raíz) — catálogo único, si no existe
+- `log.md` (raíz) — cronología única, si no existe
 
 Si QUERY o LINT no encuentran el dominio: pedir un ingest primero para inicializarlo.
 
@@ -87,8 +87,8 @@ actualizar toda página materialmente afectada (refrescar `Updated`). Las págin
 cascadan. Efectos cross-dominio: mencionarlos al usuario, no aplicarlos solos.
 
 ### Post-Ingest
-1. Actualizar `<dominio>/index.md` (añadir/actualizar filas de las páginas tocadas).
-2. Añadir al `<dominio>/log.md`:
+1. Actualizar `index.md` (raíz): añadir/actualizar filas de las páginas tocadas.
+2. Añadir al `log.md` (raíz):
    ```
    ## [YYYY-MM-DD] ingest | <primary page title>
    - Updated: <cascade-updated page title>
@@ -98,7 +98,7 @@ cascadan. Efectos cross-dominio: mencionarlos al usuario, no aplicarlos solos.
 ## 7. Operación QUERY
 
 1. Resolver el dominio.
-2. Leer `<dominio>/index.md` para localizar páginas relevantes.
+2. Leer `index.md` (raíz) para localizar páginas relevantes.
 3. Leer esas páginas y sintetizar una respuesta.
 4. **Preferir el contenido de la Wiki** sobre el conocimiento del modelo. Citar con enlaces.
 5. Responder en la conversación; **no escribir archivos** salvo que se pida.
@@ -136,15 +136,15 @@ sin página, **vacíos de datos** (entidades muy referenciadas con poca cobertur
 conocimiento/estado a una **operación real** (actualizar una tarea, un estado, una compra). Se registra
 en el log como `act`, con el mismo formato de prefijo.
 
-## 10. Formato de `index.md`
-Catálogo orientado a **contenido**. Agrupado por `topic` -> subheading de tipo
-(`Concepts` / `Entities` / `Summaries` / `Comparisons & Syntheses` / `Archived`). Omitir subheadings sin
+## 10. Formato de `index.md` (raíz)
+Catálogo **único** (conocimiento + operaciones). La sección Conocimiento se agrupa por `topic` -> subheading de tipo
+(`Concepts` / `Entities` / `Summaries` / `Comparisons & Syntheses`); la sección Operaciones, por tipo. Omitir subheadings sin
 páginas. Ver `index-template.md`.
 
-## 11. Formato de `log.md`
+## 11. Formato de `log.md` (raíz)
 Cronológico, **append-only**. Cada entrada empieza con:
 ```
-## [YYYY-MM-DD] <ingest|query|lint|act> | <título>
+## [YYYY-MM-DD] <op> | <título>   (op = ingest · query · lint · act · project · task · decision · rule · workflow · state · event)
 ```
 Parseable con `grep "^## \[" log.md | tail -5`. Nunca se edita el pasado.
 
@@ -152,7 +152,7 @@ Parseable con `grep "^## \[" log.md | tail -5`. Nunca se edita el pasado.
 - Markdown estándar con **enlaces relativos** dentro de la Wiki. Solo un nivel de `topic/`, sin anidar más.
 - Fechas: `log`/`Collected`/`Archived` = hoy; `Updated` = cuándo cambió el contenido; `Published` = de la fuente (`Unknown` si no hay).
 - Cada página (excepto `index.md`/`log.md`) lleva `type:`.
-- INGEST actualiza `index.md` y el `log.md` del dominio. ARCHIVE actualiza `index.md` y el log. LINT actualiza el log (e `index.md` solo si auto-fix). **QUERY plano no escribe archivos.**
+- INGEST actualiza `index.md` y `log.md`. ARCHIVE actualiza `index.md` y el log. LINT actualiza el log (e `index.md` solo si auto-fix). **QUERY plano no escribe archivos.**
 - Nombres de archivo: `summary-*`, `entity-*`, `concept-*`, `comparison-*`, `synthesis-*`, `archive-*`.
 
 ## 13. Convención de idioma por capa
@@ -177,12 +177,11 @@ CEREBRO añade, sobre la capa de conocimiento, una **capa operativa**: qué hace
 
 ```text
 02_OPERACIONES/
-├── index.md
-├── log.md
-├── proyectos/  tareas/  decisiones/  reglas/  workflows/  estados/  compras/
+├── proyectos/  decisiones/  reglas/  workflows/
+├── tareas.md   estados.md   compras.md
 ```
 
-Plantillas: `_SISTEMA/plantillas/operaciones/`.
+El índice (`index.md`) y el log (`log.md`) son **únicos** y viven en la **raíz**. Plantillas: `_SISTEMA/plantillas/operaciones/`.
 
 ## 16. Tipos operativos
 
@@ -191,12 +190,12 @@ Cada página operativa (excepto `index.md` y `log.md`) lleva frontmatter `type:`
 | `type` | Carpeta | Qué es |
 |--------|---------|--------|
 | `project` | `proyectos/` | trabajo existente |
-| `task` | `tareas/` | algo que hay que hacer |
+| `task` | casilla en la nota del proyecto (o `tareas.md`) | algo que hay que hacer |
 | `decision` | `decisiones/` | decisión tomada |
 | `rule` | `reglas/` | regla |
 | `workflow` | `workflows/` | forma establecida de hacer algo |
-| `state` | `estados/` | situación actual |
-| `purchase` | `compras/` | lista/registro de compra |
+| `state` | fila en `estados.md` | situación actual |
+| `purchase` | casilla en `compras.md` | lista/registro de compra |
 
 **Campos comunes:** `type`, `status`, `created`, `updated`.
 **Campos por tipo:**
@@ -208,31 +207,33 @@ Cada página operativa (excepto `index.md` y `log.md`) lleva frontmatter `type:`
 - `state`: `variable`, `value`.
 - `purchase`: `status` (abierta/comprada).
 
-Los tipos **`event` (EVENT)**, **`context` (CONTEXT)** y **`action` (ACTION)** **no tienen carpeta** (ver §19).
+Los tipos **`event`**, **`context`** y **`action`** ya no son entidades propias (ver §19): el **evento** vive solo en `log.md`, la **acción es una tarea**, y el **contexto** se absorbe en el proyecto/estado al que aplica.
 
 ## 17. Operación ACT
 
 `ACT` (extensión de CEREBRO, no de Karpathy) pasa del conocimiento/estado a una **operación real**.
 1. Interpretar la instrucción.
 2. Aplicar el cambio en `02_OPERACIONES/` (crear/actualizar la página del tipo).
-3. Actualizar `02_OPERACIONES/index.md` (y el *Registro rápido* si aplica).
-4. Añadir al `02_OPERACIONES/log.md` con `op` = el tipo (`task`, `state`, …) o `act`.
+3. Actualizar `index.md` (raíz).
+4. Añadir al `log.md` (raíz) con `op` = el tipo (`task`, `state`, …) o `act`.
 
-## 18. Índice y log operativos
+> Nota: por ahora `index.md`/`log.md` los actualiza **Cline a mano** en cada operación (como en Karpathy). Que el **escritor único sea Python** es una **meta futura**, no un hecho.
 
-- `02_OPERACIONES/index.md` — catálogo por tipo (una sección por tipo) + sección **Registro rápido** para evento/contexto/acción. Se actualiza en cada operación.
-- `02_OPERACIONES/log.md` — append-only. Formato:
+## 18. Índice y log (único, en la raíz)
+
+- `index.md` (raíz) — catálogo único (conocimiento + operaciones). Se actualiza en cada operación.
+- `log.md` (raíz) — cronología append-only. Formato:
   ```
   ## [YYYY-MM-DD] <tipo> | <título>
   ```
   Parseable: `grep "^## \[" log.md | tail -5`.
 
-## 19. Registros sin carpeta (EVENT · CONTEXT · ACTION)
+## 19. EVENT · CONTEXT · ACTION (sin entidad propia)
 
-Decisión de CEREBRO: estos tres tipos **no tienen carpeta**; se registran como **entradas**:
-- En `02_OPERACIONES/index.md` → sección **Registro rápido**: columnas `Fecha | Tipo | Entrada | Enlaces`.
-- En `02_OPERACIONES/log.md` → entrada con `op` = `event` / `context` / `action`.
+Decisión de CEREBRO:
+- **EVENT** (evento): vive **solo** en `log.md` (su naturaleza es cronológica).
+- **ACTION** (acción): **es una tarea** → misma regla que `task`; no es tipo aparte.
 
-Definiciones: **EVENT** = algo que ocurrió; **CONTEXT** = situación relevante; **ACTION** = operación que debe ejecutarse.
+- **CONTEXT** (contexto): **no es entidad propia**; se absorbe en el proyecto o estado al que aplica.
 
-> Nota: `STATE`, `PROJECT`, `TASK`, `DECISION`, `RULE` y `WORKFLOW` **sí** tienen carpeta y página propia.
+> Nota: `PROJECT`, `DECISION`, `RULE` y `WORKFLOW` tienen **nota propia**; `TASK`, `STATE` y `PURCHASE` viven dentro de un archivo (`tareas.md` / nota de proyecto, `estados.md`, `compras.md`).
