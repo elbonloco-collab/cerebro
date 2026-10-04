@@ -160,6 +160,7 @@ Parseable con `grep "^## \[" log.md | tail -5`. Nunca se edita el pasado.
 índice, nombres de operaciones) **en inglés**, para que las plantillas y el LINT sean deterministas. La
 **prosa** va en **español**.
 - **Capa Operativa (`02_OPERACIONES`):** es capa propia de CEREBRO, así que headings y subheadings van en **español**; las **claves de frontmatter** y los **valores de `type`** se mantienen en **inglés**.
+- **Formato de salida del modelo:** lo impone el **código**, no este archivo.
 
 ## 14. Rutas relativas (mapa CEREBRO)
 Desde una página en `<dominio>/<topic>/`:

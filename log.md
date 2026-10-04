@@ -21,14 +21,14 @@
 - Created: Base de Conocimiento Compuesta (concept)
 - Created: LLM Wiki supera a RAG para conocimiento de largo plazo (synthesis)
 
-## [2026-10-04] project | Producción de Eva
+## [2026-10-04] project | Producción de Eva (ejemplo)
 - Creado `02_OPERACIONES/proyectos/project-eva-produccion.md`; usa el workflow de música.
 
-## [2026-10-04] decision | Workflow de música para proyectos nuevos
+## [2026-10-04] decision | Workflow de música para proyectos nuevos (ejemplo)
 - Creada la decisión; enlaza el workflow de producción de música.
 
-## [2026-10-04] rule | Usar el workflow de música en proyectos nuevos
+## [2026-10-04] rule | Usar el workflow de música en proyectos nuevos (ejemplo)
 - Creada la regla derivada de la decisión.
 
-## [2026-10-04] event | Se acabó el café
+## [2026-10-04] event | Se acabó el café (ejemplo)
 - EVENTO: se registra **solo aquí**. Los eventos no tienen página ni carpeta.
