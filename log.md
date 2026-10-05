@@ -32,3 +32,6 @@
 
 ## [2026-10-04] event | Se acabó el café (ejemplo)
 - EVENTO: se registra **solo aquí**. Los eventos no tienen página ni carpeta.
+
+## [2026-10-05] project | Prueba OpenCode (ejemplo)
+- Creado `02_OPERACIONES/proyectos/project-prueba-opencode.md`.
