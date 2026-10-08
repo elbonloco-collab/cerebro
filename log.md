@@ -35,3 +35,6 @@
 
 ## [2026-10-05] project | Prueba OpenCode (ejemplo)
 - Creado `02_OPERACIONES/proyectos/project-prueba-opencode.md`.
+
+## [2026-10-08] query | Archived: CEREBRO OS — MASTER AUDIT
+- Archivada la auditoría de solo lectura del estado del servidor y el workspace.

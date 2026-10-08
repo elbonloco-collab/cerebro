@@ -31,6 +31,15 @@ Patrones y conceptos para construir bases de conocimiento personales mantenidas 
 |------|---------|---------|
 | [LLM Wiki supera a RAG para conocimiento de largo plazo](01_WIKI/conceptos/synthesis-llm-wiki-beats-rag.md) | La wiki persistente compone valor; RAG re-deriva por consulta | 2026-10-04 |
 
+## auditorias
+
+Auditorías puntuales del estado real de CEREBRO.
+
+#### Archived
+| Page | Summary | Updated |
+|------|---------|---------|
+| [CEREBRO OS — MASTER AUDIT](01_WIKI/referencias/archive-cerebro-os-master-audit-2026-10-08.md) | [Archived] Estado de MVP, bot, Wiki, Operaciones, servicios, Git y copias al 2026-10-08 | 2026-10-08 |
+
 ## Operaciones — `02_OPERACIONES`
 
 ### Proyectos
